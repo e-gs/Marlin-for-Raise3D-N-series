@@ -60,6 +60,12 @@
 //
 // Steppers
 //
+/* Raise3D SPI CS for TMC2130 */
+/* EXP1.1 = MISO, EXP1.2 = SCK, EXP1.3 = X_CS, EXP1.5 = Y_CS, EXP1.6 = MOSI */
+/* Note: EXP1 socket on Raise3D Rumba board is mounted incorrectly (turned 180 deg.) */
+#define X_CS_PIN           12
+#define Y_CS_PIN           11
+
 #define X_STEP_PIN         17
 #define X_DIR_PIN          16
 #define X_ENABLE_PIN       48
