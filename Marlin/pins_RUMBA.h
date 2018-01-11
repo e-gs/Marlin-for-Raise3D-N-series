@@ -159,8 +159,10 @@
 #define LCD_PINS_D5        38
 #define LCD_PINS_D6        41
 #define LCD_PINS_D7        40
-#define BTN_EN1            11
-#define BTN_EN2            12
+#if 0 // Raise3D with TMC2130
+    #define BTN_EN1            11
+    #define BTN_EN2            12
+#endif
 #define BTN_ENC            43
 
 //
