@@ -176,7 +176,7 @@
     st.begin();
     st.setCurrent(st.getCurrent(), R_SENSE, HOLD_MULTIPLIER);
     st.microsteps(microsteps);
-    st.blank_time(24);
+    st.blank_time(16);  // Raise3D 24 -> 16 (best for Stealtchop)
     st.off_time(5); // Only enables the driver if used with stealthChop
     st.interpolate(INTERPOLATE);
     st.power_down_delay(128); // ~2s until driver lowers to hold current
