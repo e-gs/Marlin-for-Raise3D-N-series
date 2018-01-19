@@ -31,6 +31,7 @@
  * Copyright (c) 2015 Dominik Wenger
  */
 
+#include<Arduino.h>   /* Raise 3D TMC2208 */
 #include "stepper_indirection.h"
 
 #include "MarlinConfig.h"
@@ -378,7 +379,7 @@
     st.I_scale_analog(false);
     st.rms_current(st.getCurrent(), HOLD_MULTIPLIER, R_SENSE);
     st.microsteps(microsteps);
-    st.blank_time(24);
+    st.blank_time(16); // Raise3D 24 -> 16 (best for Stealtchop)
     st.toff(5);
     st.intpol(INTERPOLATE);
     st.TPOWERDOWN(128); // ~2s until driver lowers to hold current

@@ -88,6 +88,16 @@
 #define Z2_DIR_PIN         28   /* Raise3D */
 #define Z2_ENABLE_PIN      39   /* Raise3D */
 
+#if ENABLED(HAVE_TMC2208)
+  /**
+   * TMC2208 stepper drivers
+   *
+   * Hardware serial communication ports.
+   */
+  #define X_HARDWARE_SERIAL  Serial1 /* Raise3D TMC2208 */
+  #define Y_HARDWARE_SERIAL  Serial3 /* Raise3D TMC2208 */
+#endif
+
 //
 // Temperature Sensors
 //
@@ -147,9 +157,11 @@
 //
 #define SD_DETECT_PIN      49
 #define BEEPER_PIN         44
-#define LCD_PINS_RS        19
+#if DISABLED(HAVE_TMC2208)  /* Raise3D TMC2208 */
+  #define LCD_PINS_D4      18
+  #define LCD_PINS_RS      19
+#endif
 #define LCD_PINS_ENABLE    42
-#define LCD_PINS_D4        18
 #define LCD_PINS_D5        38
 #define LCD_PINS_D6        41
 #define LCD_PINS_D7        40
@@ -160,6 +172,8 @@
 //
 // M3/M4/M5 - Spindle/Laser Control
 //
-#define SPINDLE_LASER_PWM_PIN     4  // MUST BE HARDWARE PWM
-#define SPINDLE_LASER_ENABLE_PIN 14  // Pin should have a pullup!
-#define SPINDLE_DIR_PIN          15
+#if DISABLED(HAVE_TMC2208) /* Raise3D TMC2208 */
+  #define SPINDLE_LASER_PWM_PIN     4  // MUST BE HARDWARE PWM
+  #define SPINDLE_LASER_ENABLE_PIN 14  // Pin should have a pullup!
+  #define SPINDLE_DIR_PIN          15
+#endif

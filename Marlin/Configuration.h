@@ -104,15 +104,15 @@
 
 /*=====Raise3D modified======*/
 #define N_SERIES_PROTOCOL
-#define N1
-//#define N2
+//#define N1
+#define N2
 //#define N2PLUS
 //#define DUAL    //Un-comment this line to get dual head version firmware.
-#define BONDTECH  //Un-comment this line to get Bondtech extruder firmware.
+//#define BONDTECH  //Un-comment this line to get Bondtech extruder firmware.
 
-#define ABH_HOTEND
+//#define ABH_HOTEND
 //#define ABH_HEATBED
-#define ABH_Y_SIZE_EXTENSION
+//#define ABH_Y_SIZE_EXTENSION
 
 /**
  * This setting determines the communication speed of the printer.
@@ -1553,7 +1553,7 @@
 // RepRapDiscount FULL GRAPHIC Smart Controller
 // http://reprap.org/wiki/RepRapDiscount_Full_Graphic_Smart_Controller
 //
-#define REPRAP_DISCOUNT_FULL_GRAPHIC_SMART_CONTROLLER
+// #define REPRAP_DISCOUNT_FULL_GRAPHIC_SMART_CONTROLLER  /* Raise 3D TMC2208 */
 
 //
 // MakerLab Mini Panel with graphic
