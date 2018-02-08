@@ -105,15 +105,16 @@
 /*=====Raise3D modified======*/
 #define N_SERIES_PROTOCOL
 //#define N1
-#define N2
-//#define N2PLUS
-//#define DUAL            //Un-comment this line to get dual head version firmware.
+//#define N2
+#define N2PLUS
+#define DUAL            //Un-comment this line to get dual head version firmware.
 //#define BONDTECH        //Un-comment this line to get Bondtech extruder firmware (can be combined with DUAL).
 //#define BONDTECH_BMG    //Un-comment this line to get Bondtech BMG extruder firmware (can be combined with DUAL).
 
 //#define ABH_HOTEND
 //#define ABH_HEATBED
 //#define ABH_Y_SIZE_EXTENSION
+#define PHIFE   /* changes specific to community user Phife */
 
 /**
  * This setting determines the communication speed of the printer.
@@ -365,7 +366,11 @@
   #define BANG_MAX 128 // limits current to nozzle while in bang-bang mode; 255=full current
   #define PID_MAX 255  // limits current to nozzle while PID is active (see PID_FUNCTIONAL_RANGE below); 255=full current
 #else
-  #define BANG_MAX 255     // limits current to nozzle while in bang-bang mode; 255=full current
+  #ifdef PHIFE
+    #define BANG_MAX 200  // limits current to nozzle while in bang-bang mode; 255=full current
+  #else
+    #define BANG_MAX 255  // limits current to nozzle while in bang-bang mode; 255=full current
+  #endif
   #define PID_MAX BANG_MAX // limits current to nozzle while PID is active (see PID_FUNCTIONAL_RANGE below); 255=full current
 #endif
 #define PID_K1 0.95      // Smoothing factor within the PID
@@ -394,10 +399,16 @@
     #define  DEFAULT_Kd 200.0
   #else
 
+  #ifdef PHIFE
+    #define  DEFAULT_Kp 13.81
+    #define  DEFAULT_Ki 0.74
+    #define  DEFAULT_Kd 64.49
+  #else
     // N series KS version
     #define  DEFAULT_Kp 14.49
     #define  DEFAULT_Ki 0.8
     #define  DEFAULT_Kd 65.52
+  #endif
 
 //Test V2 hotend
 //   #define  DEFAULT_Kp 10.65
@@ -445,9 +456,16 @@
   #else
     //120V 250W silicone heater into 4mm borosilicate (MendelMax 1.5+)
     //from FOPDT model - kp=.39 Tp=405 Tdead=66, Tc set to 79.2, aggressive factor of .15 (vs .1, 1, 10)
-    #define  DEFAULT_bedKp 10.00
-    #define  DEFAULT_bedKi .023
-    #define  DEFAULT_bedKd 305.4
+     #ifdef PHIFE
+       #define  DEFAULT_bedKp 209.33
+       #define  DEFAULT_bedKi 38.71
+       #define  DEFAULT_bedKd 282.96
+     #else
+       #define  DEFAULT_bedKp 10.00
+       #define  DEFAULT_bedKi .023
+       #define  DEFAULT_bedKd 305.4
+     #endif
+   #endif
 
     //120V 250W silicone heater into 4mm borosilicate (MendelMax 1.5+)
     //from pidautotune
@@ -541,7 +559,7 @@
 // Mechanical endstop with COM to ground and NC to Signal uses "false" here (most common setup).
 #define X_MIN_ENDSTOP_INVERTING true // set to true to invert the logic of the endstop.
 #define Y_MIN_ENDSTOP_INVERTING true // set to true to invert the logic of the endstop.
-#define Z_MIN_ENDSTOP_INVERTING true // set to true to invert the logic of the endstop.
+#define Z_MIN_ENDSTOP_INVERTING false // set to true to invert the logic of the endstop. /* Raise3D BLTouch */
 #define X_MAX_ENDSTOP_INVERTING true // set to true to invert the logic of the endstop.
 #define Y_MAX_ENDSTOP_INVERTING true // set to true to invert the logic of the endstop.
 #define Z_MAX_ENDSTOP_INVERTING true // set to true to invert the logic of the endstop.
@@ -699,7 +717,7 @@
 /**
  * The BLTouch probe uses a Hall effect sensor and emulates a servo.
  */
-//#define BLTOUCH
+#define BLTOUCH
 #if ENABLED(BLTOUCH)
   //#define BLTOUCH_DELAY 375   // (ms) Enable and increase if needed
 #endif
@@ -745,12 +763,12 @@
  *      O-- FRONT --+
  *    (0,0)
  */
-#define X_PROBE_OFFSET_FROM_EXTRUDER 10  // X offset: -left  +right  [of the nozzle]
-#define Y_PROBE_OFFSET_FROM_EXTRUDER 10  // Y offset: -front +behind [the nozzle]
-#define Z_PROBE_OFFSET_FROM_EXTRUDER 0   // Z offset: -below +above  [the nozzle]
+#define X_PROBE_OFFSET_FROM_EXTRUDER 13     // X offset: -left  +right  [of the nozzle] /* Raise3D BLTouch */
+#define Y_PROBE_OFFSET_FROM_EXTRUDER -32    // Y offset: -front +behind [the nozzle]    /* Raise3D BLTouch */
+#define Z_PROBE_OFFSET_FROM_EXTRUDER -0.9   // Z offset: -below +above  [the nozzle]    /* Raise3D BLTouch */
 
 // X and Y axis travel speed (mm/m) between probes
-#define XY_PROBE_SPEED 8000
+#define XY_PROBE_SPEED 10000  /* Raise3D BLTouch */
 
 // Speed for the first approach when double-probing (MULTIPLE_PROBING == 2)
 #define Z_PROBE_SPEED_FAST HOMING_FEEDRATE_Z
@@ -777,12 +795,12 @@
  * Example: `M851 Z-5` with a CLEARANCE of 4  =>  9mm from bed to nozzle.
  *     But: `M851 Z+1` with a CLEARANCE of 2  =>  2mm from bed to nozzle.
  */
-#define Z_CLEARANCE_DEPLOY_PROBE   10 // Z Clearance for Deploy/Stow
+#define Z_CLEARANCE_DEPLOY_PROBE   5  // Z Clearance for Deploy/Stow  /* Raise3D BLTouch */
 #define Z_CLEARANCE_BETWEEN_PROBES  5 // Z Clearance between probe points
 
 // For M851 give a range for adjusting the Z probe offset
 #define Z_PROBE_OFFSET_RANGE_MIN -20
-#define Z_PROBE_OFFSET_RANGE_MAX 20
+#define Z_PROBE_OFFSET_RANGE_MAX 0  /* Raise3D BLTouch */
 
 // Enable the M48 repeatability test to test probe accuracy
 //#define Z_MIN_PROBE_REPEATABILITY_TEST
@@ -953,7 +971,7 @@
  *   With an LCD controller the process is guided step-by-step.
  */
 //#define AUTO_BED_LEVELING_3POINT
-//#define AUTO_BED_LEVELING_LINEAR
+#define AUTO_BED_LEVELING_LINEAR  /* Raise3D BLTouch */
 //#define AUTO_BED_LEVELING_BILINEAR
 //#define AUTO_BED_LEVELING_UBL
 //#define MESH_BED_LEVELING
@@ -993,14 +1011,14 @@
 #if ENABLED(AUTO_BED_LEVELING_LINEAR) || ENABLED(AUTO_BED_LEVELING_BILINEAR)
 
   // Set the number of grid points per dimension.
-  #define GRID_MAX_POINTS_X 3
+  #define GRID_MAX_POINTS_X 4   /* Raise3D BLTouch */
   #define GRID_MAX_POINTS_Y GRID_MAX_POINTS_X
 
-  // Set the boundaries for probing (where the probe can reach).
+  // Set the boundaries for probing (where the probe can reach). /* Raise3D BLTouch */
   #define LEFT_PROBE_BED_POSITION 15
-  #define RIGHT_PROBE_BED_POSITION 170
-  #define FRONT_PROBE_BED_POSITION 20
-  #define BACK_PROBE_BED_POSITION 170
+  #define RIGHT_PROBE_BED_POSITION 290
+  #define FRONT_PROBE_BED_POSITION 15
+  #define BACK_PROBE_BED_POSITION 255
 
   // The Z probe minimum outer margin (to validate G29 parameters).
   #define MIN_PROBE_EDGE 10
@@ -1123,7 +1141,7 @@
 
 // Homing speeds (mm/m)
 #define HOMING_FEEDRATE_XY (50*60)
-#define HOMING_FEEDRATE_Z  (4*60)
+#define HOMING_FEEDRATE_Z  (25*60)  /* Raise3D BLTouch */
 
 // @section calibrate
 
@@ -1196,7 +1214,7 @@
 // M501 - reads parameters from EEPROM (if you need reset them after you changed them temporarily).
 // M502 - reverts to the default "factory settings".  You still need to store them in EEPROM afterwards if you want to.
 //
-//#define EEPROM_SETTINGS // Enable for M500 and M501 commands
+#define EEPROM_SETTINGS // Enable for M500 and M501 commands
 //#define DISABLE_M503    // Saves ~2700 bytes of PROGMEM. Disable for release!
 #define EEPROM_CHITCHAT   // Give feedback on EEPROM commands. Disable to save PROGMEM.
 
@@ -1841,12 +1859,19 @@
  * Set this manually if there are extra servos needing manual control.
  * Leave undefined or set to 0 to entirely disable the servo subsystem.
  */
-//#define NUM_SERVOS 3 // Servo index starts with 0 for M280 command
+#define NUM_SERVOS 3 // Servo index starts with 0 for M280 command  /* Raise3D BLTouch */
+
+#ifdef NUM_SERVOS  /* Raise3D BLTouch */
+  #define SERVO0_PIN 5
+  #if NUM_SERVOS > 1
+    #define SERVO1_PIN 4
+  #endif
+#endif
 
 // Delay (in milliseconds) before the next move will start, to give the servo time to reach its target angle.
 // 300ms is a good value but you can try less delay.
 // If the servo can't reach the requested position, increase it.
-#define SERVO_DELAY { 300 }
+#define SERVO_DELAY { 300, 300, 300 } /* Raise3D BLTouch */
 
 // Servo deactivation
 //
