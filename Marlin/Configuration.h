@@ -114,7 +114,7 @@
 //#define ABH_HOTEND
 //#define ABH_HEATBED
 //#define ABH_Y_SIZE_EXTENSION
-#define PHIFE   /* changes specific to community user Phife */
+#define PHIFE   /* changes specific to community member Phife */
 
 /**
  * This setting determines the communication speed of the printer.
@@ -399,16 +399,16 @@
     #define  DEFAULT_Kd 200.0
   #else
 
-  #ifdef PHIFE
-    #define  DEFAULT_Kp 13.81
-    #define  DEFAULT_Ki 0.74
-    #define  DEFAULT_Kd 64.49
-  #else
-    // N series KS version
-    #define  DEFAULT_Kp 14.49
-    #define  DEFAULT_Ki 0.8
-    #define  DEFAULT_Kd 65.52
-  #endif
+    #ifdef PHIFE
+      #define  DEFAULT_Kp 13.81
+      #define  DEFAULT_Ki 0.74
+      #define  DEFAULT_Kd 64.49
+    #else
+      // N series KS version
+      #define  DEFAULT_Kp 14.49
+      #define  DEFAULT_Ki 0.8
+      #define  DEFAULT_Kd 65.52
+    #endif
 
 //Test V2 hotend
 //   #define  DEFAULT_Kp 10.65
@@ -456,16 +456,16 @@
   #else
     //120V 250W silicone heater into 4mm borosilicate (MendelMax 1.5+)
     //from FOPDT model - kp=.39 Tp=405 Tdead=66, Tc set to 79.2, aggressive factor of .15 (vs .1, 1, 10)
-     #ifdef PHIFE
-       #define  DEFAULT_bedKp 209.33
-       #define  DEFAULT_bedKi 38.71
-       #define  DEFAULT_bedKd 282.96
-     #else
-       #define  DEFAULT_bedKp 10.00
-       #define  DEFAULT_bedKi .023
-       #define  DEFAULT_bedKd 305.4
-     #endif
-   #endif
+    #ifdef PHIFE
+      #define  DEFAULT_bedKp 209.33
+      #define  DEFAULT_bedKi 38.71
+      #define  DEFAULT_bedKd 282.96
+    #else
+      #define  DEFAULT_bedKp 10.00
+      #define  DEFAULT_bedKi .023
+      #define  DEFAULT_bedKd 305.4
+    #endif
+  #endif
 
     //120V 250W silicone heater into 4mm borosilicate (MendelMax 1.5+)
     //from pidautotune
@@ -474,7 +474,6 @@
     //#define  DEFAULT_bedKd 1675.16
 
     // FIND YOUR OWN: "M303 E-1 C8 S90" to run autotune on the bed at 90 degreesC for 8 cycles.
-  #endif
 #endif // PIDTEMPBED
 
 // @section extruder
