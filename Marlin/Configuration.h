@@ -107,7 +107,7 @@
 //#define N1
 #define N2
 //#define N2PLUS
-//#define DUAL            //Un-comment this line to get dual head version firmware.
+//#define DUAL          //Un-comment this line to get dual head version firmware.
 //#define BONDTECH        //Un-comment this line to get Bondtech extruder firmware (can be combined with DUAL).
 //#define BONDTECH_BMG    //Un-comment this line to get Bondtech BMG extruder firmware (can be combined with DUAL).
 
@@ -496,6 +496,12 @@
 //===========================================================================
 //============================= Mechanical Settings =========================
 //===========================================================================
+
+/* Raise3D Lack of material testing */
+#define ENDSTOPPULLUP_E0_LACK
+#define ENDSTOPPULLUP_E1_LACK
+const bool E0_LACK_ENDSTOP_INVERTING = true; // set to true to invert the logic of the endstop.
+const bool E1_LACK_ENDSTOP_INVERTING = true; // set to true to invert the logic of the endstop.
 
 // @section machine
 
