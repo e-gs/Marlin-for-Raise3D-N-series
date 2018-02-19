@@ -108,7 +108,7 @@
 //#define N2
 #define N2PLUS
 #define DUAL            //Un-comment this line to get dual head version firmware.
-//#define BONDTECH        //Un-comment this line to get Bondtech extruder firmware (can be combined with DUAL).
+#define BONDTECH        //Un-comment this line to get Bondtech extruder firmware (can be combined with DUAL).
 //#define BONDTECH_BMG    //Un-comment this line to get Bondtech BMG extruder firmware (can be combined with DUAL).
 
 //#define ABH_HOTEND
@@ -155,7 +155,7 @@
 #endif
 
 // Generally expected filament diameter (1.75, 2.85, 3.0, ...). Used for Volumetric, Filament Width Sensor, etc.
-#define DEFAULT_NOMINAL_FILAMENT_DIA 3.0
+#define DEFAULT_NOMINAL_FILAMENT_DIA 1.75
 
 // For Cyclops or any "multi-extruder" that shares a single nozzle.
 //#define SINGLENOZZLE
@@ -400,9 +400,9 @@
   #else
 
     #ifdef PHIFE
-      #define  DEFAULT_Kp 13.81
-      #define  DEFAULT_Ki 0.74
-      #define  DEFAULT_Kd 64.49
+      #define  DEFAULT_Kp 11.82
+      #define  DEFAULT_Ki 0.5
+      #define  DEFAULT_Kd 69.71
     #else
       // N series KS version
       #define  DEFAULT_Kp 14.49
@@ -770,7 +770,7 @@ const bool E1_LACK_ENDSTOP_INVERTING = true; // set to true to invert the logic 
  */
 #define X_PROBE_OFFSET_FROM_EXTRUDER 13     // X offset: -left  +right  [of the nozzle] /* Raise3D BLTouch */
 #define Y_PROBE_OFFSET_FROM_EXTRUDER -32    // Y offset: -front +behind [the nozzle]    /* Raise3D BLTouch */
-#define Z_PROBE_OFFSET_FROM_EXTRUDER -0.9   // Z offset: -below +above  [the nozzle]    /* Raise3D BLTouch */
+#define Z_PROBE_OFFSET_FROM_EXTRUDER -1.05  // Z offset: -below +above  [the nozzle]    /* Raise3D BLTouch */
 
 // X and Y axis travel speed (mm/m) between probes
 #define XY_PROBE_SPEED 10000  /* Raise3D BLTouch */
@@ -801,7 +801,7 @@ const bool E1_LACK_ENDSTOP_INVERTING = true; // set to true to invert the logic 
  *     But: `M851 Z+1` with a CLEARANCE of 2  =>  2mm from bed to nozzle.
  */
 #define Z_CLEARANCE_DEPLOY_PROBE   5  // Z Clearance for Deploy/Stow  /* Raise3D BLTouch */
-#define Z_CLEARANCE_BETWEEN_PROBES  5 // Z Clearance between probe points
+#define Z_CLEARANCE_BETWEEN_PROBES  3 // Z Clearance between probe points
 
 // For M851 give a range for adjusting the Z probe offset
 #define Z_PROBE_OFFSET_RANGE_MIN -20
@@ -976,8 +976,8 @@ const bool E1_LACK_ENDSTOP_INVERTING = true; // set to true to invert the logic 
  *   With an LCD controller the process is guided step-by-step.
  */
 //#define AUTO_BED_LEVELING_3POINT
-#define AUTO_BED_LEVELING_LINEAR  /* Raise3D BLTouch */
-//#define AUTO_BED_LEVELING_BILINEAR
+//#define AUTO_BED_LEVELING_LINEAR  /* Raise3D BLTouch */
+#define AUTO_BED_LEVELING_BILINEAR
 //#define AUTO_BED_LEVELING_UBL
 //#define MESH_BED_LEVELING
 
@@ -1137,7 +1137,7 @@ const bool E1_LACK_ENDSTOP_INVERTING = true; // set to true to invert the logic 
 // - Move the Z probe (or nozzle) to a defined XY point before Z Homing when homing all axes (G28).
 // - Prevent Z homing when the Z probe is outside bed area.
 //
-//#define Z_SAFE_HOMING
+#define Z_SAFE_HOMING
 
 #if ENABLED(Z_SAFE_HOMING)
   #define Z_SAFE_HOMING_X_POINT ((X_BED_SIZE) / 2)    // X point for Z homing when homing all axes (G28).
