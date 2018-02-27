@@ -426,7 +426,7 @@ uint8_t Temperature::soft_pwm_amount[HOTENDS],
       if (ELAPSED(ms, next_temp_ms)) {
         #if HAS_TEMP_HOTEND || HAS_TEMP_BED
           #ifdef N_SERIES_PROTOCOL
-            SERIAL_PROTOCOLPAIR(MSG_T, input);
+            SERIAL_PROTOCOLPAIR("T:", current);
             SERIAL_PROTOCOLPAIR(MSG_AT, soft_pwm_amount[hotend]);
           #else
             print_heaterstates();
