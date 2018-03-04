@@ -107,14 +107,15 @@
 //#define N1
 //#define N2
 #define N2PLUS
-#define DUAL            //Un-comment this line to get dual head version firmware.
-#define BONDTECH        //Un-comment this line to get Bondtech extruder firmware (can be combined with DUAL).
+#define DUAL              //Un-comment this line to get dual head version firmware.
+#define BONDTECH_MINI     //Un-comment this line to get Bondtech Mini extruder firmware (can be combined with DUAL).
 //#define BONDTECH_BMG    //Un-comment this line to get Bondtech BMG extruder firmware (can be combined with DUAL).
 
+//#define ABH_RUNOUT_SENSOR
 //#define ABH_HOTEND
 //#define ABH_HEATBED
 //#define ABH_Y_SIZE_EXTENSION
-#define PHIFE   /* changes specific to community member Phife */
+//#define PHIFE   /* changes specific for community member Phife */
 
 /**
  * This setting determines the communication speed of the printer.
@@ -404,21 +405,22 @@
       #define  DEFAULT_Ki 0.5
       #define  DEFAULT_Kd 69.71
     #else
-      // N series KS version
+//    N series KS version
       #define  DEFAULT_Kp 14.49
       #define  DEFAULT_Ki 0.8
       #define  DEFAULT_Kd 65.52
+
+//    Test V2 hotend
+//    #define  DEFAULT_Kp 10.65
+//    #define  DEFAULT_Ki 0.39
+//    #define  DEFAULT_Kd 72.40
+
+//    new 300
+//    #define  DEFAULT_Kp 4.12
+//    #define  DEFAULT_Ki 0.12
+//    #define  DEFAULT_Kd 36.03
+
     #endif
-
-//Test V2 hotend
-//   #define  DEFAULT_Kp 10.65
-//   #define  DEFAULT_Ki 0.39
-//   #define  DEFAULT_Kd 72.40
-
-//new 300
-//   #define  DEFAULT_Kp 4.12
-//   #define  DEFAULT_Ki 0.12
-//   #define  DEFAULT_Kd 36.03
   #endif
 
 #endif // PIDTEMP
@@ -465,7 +467,6 @@
       #define  DEFAULT_bedKi .023
       #define  DEFAULT_bedKd 305.4
     #endif
-  #endif
 
     //120V 250W silicone heater into 4mm borosilicate (MendelMax 1.5+)
     //from pidautotune
@@ -474,6 +475,7 @@
     //#define  DEFAULT_bedKd 1675.16
 
     // FIND YOUR OWN: "M303 E-1 C8 S90" to run autotune on the bed at 90 degreesC for 8 cycles.
+  #endif
 #endif // PIDTEMPBED
 
 // @section extruder
@@ -602,7 +604,7 @@ const bool E1_LACK_ENDSTOP_INVERTING = true; // set to true to invert the logic 
  *                                      X, Y, Z, E0 [, E1[, E2[, E3[, E4]]]]
  */
 
-#ifdef BONDTECH
+#ifdef BONDTECH_MINI
   #ifdef DUAL
     #define DEFAULT_AXIS_STEPS_PER_UNIT   {80, 80, 200*16/4, 140, 476.5}  /* E0 is Bondtech mini (direct drive), E1 is Bondtech QR (for bowden) */
   #else
@@ -1021,9 +1023,9 @@ const bool E1_LACK_ENDSTOP_INVERTING = true; // set to true to invert the logic 
 
   // Set the boundaries for probing (where the probe can reach). /* Raise3D BLTouch */
   #define LEFT_PROBE_BED_POSITION 15
-  #define RIGHT_PROBE_BED_POSITION 290
+  #define RIGHT_PROBE_BED_POSITION (X_BED_SIZE - 15)
   #define FRONT_PROBE_BED_POSITION 15
-  #define BACK_PROBE_BED_POSITION 255
+  #define BACK_PROBE_BED_POSITION (Y_BED_SIZE - 50)
 
   // The Z probe minimum outer margin (to validate G29 parameters).
   #define MIN_PROBE_EDGE 10
