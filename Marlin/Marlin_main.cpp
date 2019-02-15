@@ -9836,7 +9836,11 @@ inline void gcode_M226() {
       #endif
 
       thermalManager.updatePID();
-      SERIAL_ECHO_START();
+      #ifdef N_SERIES_PROTOCOL
+        SERIAL_PROTOCOLPGM("ok");
+      #else
+        SERIAL_ECHO_START();
+      #endif
       #if ENABLED(PID_PARAMS_PER_HOTEND)
         SERIAL_ECHOPAIR(" e:", e); // specify extruder in serial output
       #endif // PID_PARAMS_PER_HOTEND
