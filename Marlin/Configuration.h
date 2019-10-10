@@ -110,11 +110,11 @@
 /*=====Raise3D modified======*/
 #define N_SERIES_PROTOCOL
 //#define N1
-#define N2
-//#define N2PLUS
+//#define N2
+#define N2PLUS
 #define DUAL            //Un-comment this line to get dual head version firmware.
 //#define BONDTECH_MINI   //Un-comment this line to get Bondtech extruder firmware (can be combined with DUAL).
-//#define BONDTECH_BMG    //Un-comment this line to get Bondtech BMG extruder firmware (can be combined with DUAL).
+#define BONDTECH_BMG    //Un-comment this line to get Bondtech BMG extruder firmware (can be combined with DUAL).
 
 //#define ABH_RUNOUT_SENSOR
 //#define ABH_HOTEND
@@ -658,7 +658,7 @@ const bool E1_LACK_ENDSTOP_INVERTING = true; // set to true to invert the logic 
   #endif
 #else
   #ifdef BONDTECH_BMG
-    #define DEFAULT_AXIS_STEPS_PER_UNIT   {80, 80, 200*16/4, 415}  /* Bondtech BMG extruders(s) (direct drive) */
+    #define DEFAULT_AXIS_STEPS_PER_UNIT   {80, 80, 200*16/4, 415, 415}  /* Bondtech BMG extruders(s) (direct drive) */
   #else
     #define DEFAULT_AXIS_STEPS_PER_UNIT   {80, 80, 200*16/4, 94}  /* Raise3D stock extruder(s) */
   #endif
